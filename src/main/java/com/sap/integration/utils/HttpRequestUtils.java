@@ -3,8 +3,10 @@ package com.sap.integration.utils;
 
 import com.sap.integration.model.LogInfo;
 import com.sap.integration.service.LogInfoService;
+
 import net.sf.json.JSONObject;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -20,10 +22,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
+
+
+
 import javax.annotation.PostConstruct;
+
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 
 @Component
@@ -51,13 +60,23 @@ public class HttpRequestUtils {
     }
 
     /**
-     * httpPost
+     * Simple httpPost
      * @param url
      * @param jsonParam
      * @return
      */
     public static JSONObject httpPost(String url,JSONObject jsonParam,String apiName){
-        return httpPost(url, jsonParam, false,apiName);
+        return httpPost(url, jsonParam, false, null, apiName);
+    }
+    
+    /**
+     * httpPost
+     * @param url
+     * @param jsonParam
+     * @return
+     */
+    public static JSONObject httpPost(String url,JSONObject jsonParam, Map<String, String> headerMap, String apiName){
+        return httpPost(url, jsonParam, false, headerMap, apiName);
     }
 
     /**
@@ -67,7 +86,7 @@ public class HttpRequestUtils {
      * @param noNeedResponse
      * @return
      */
-    public static JSONObject httpPost(String url,JSONObject jsonParam, boolean noNeedResponse,String apiName){
+    public static JSONObject httpPost(String url,JSONObject jsonParam, boolean noNeedResponse, Map<String, String> headerMap, String apiName){
 
 
         HttpClient httpClient;
@@ -94,15 +113,24 @@ public class HttpRequestUtils {
                 StringEntity entity = new StringEntity(jsonParam.toString(), "utf-8");
                 entity.setContentEncoding("UTF-8");
                 entity.setContentType("application/json");
+             // Process Header map
+                if(headerMap != null){
+                	Iterator<String> it = headerMap.keySet().iterator();
+    				while (it.hasNext()) {
+    					String key = it.next();
+    					method.setHeader(key, headerMap.get(key));
+    				}
+                }
                 method.setEntity(entity);
             }
+            
             HttpResponse result = httpClient.execute(method);
             HttpEntity entity=result.getEntity();
             url = URLDecoder.decode(url, "UTF-8");
 
 
-            /**request successfully and get response**/
-            if (result.getStatusLine().getStatusCode() == 200) {
+            /**request successfully and post response**/
+            if (result.getStatusLine().getStatusCode() < 300) {
 
                 log.setEndTime(new Date());
                 String str = "";
