@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="C4CMLIntegration" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="C4CMLIntegration" target="1.8" />
+      <module name="libtensorflow" target="1.7" />
+      <module name="libtensorflow_jni" target="1.5" />
+      <module name="libtensorflow_jni_gpu" target="1.5" />
+      <module name="parentpom" target="1.5" />
+      <module name="proto" target="1.7" />
+      <module name="tensorflow" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
