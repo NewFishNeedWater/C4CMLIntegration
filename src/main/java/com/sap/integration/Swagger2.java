@@ -26,8 +26,8 @@ public class Swagger2 {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("C4C Integration")
-                .description("C4C Integration for Ding Talk & We Chat")
+                .title("C4C Deep Learning Integration")
+                .description("C4C Integration for Deep Learning ")
                 .version("1.0")
                 .build();
     }
