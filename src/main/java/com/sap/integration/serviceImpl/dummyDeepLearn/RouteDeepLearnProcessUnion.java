@@ -126,8 +126,7 @@ public class RouteDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 
 	@Override
 	public List<ResourceUnionVo> generateResult(C4CUserActionVo request){
-		ResourceUnionVo homeCommandUnionVo = dumDeepLearnProcessUtility.copyToCommandResourceUnionDirectly(request);
-		homeCommandUnionVo.getResourceUnion().setDisplayIndex(2);
+
 		String action = dumDeepLearnProcessUtility.getRequestAction(request);
 		if(action!= null && action.equals(SapActionsConstants.CREATE)){
 			// In case: Create Route

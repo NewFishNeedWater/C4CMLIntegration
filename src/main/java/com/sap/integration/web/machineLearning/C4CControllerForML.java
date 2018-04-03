@@ -52,8 +52,11 @@ public class C4CControllerForML {
     public C4CUserActionResponse getAIProcessResult(
             @RequestBody @ApiParam(name = "NLP API", value = "Get Whole AI Process Result", required = true) NaturalLanProcessRequest request) {
 
+        //get nature language response from recast API
         NaturalLanProcessResponse nlpResponse = naturalLanProcessService.getNLResponse(request);
+        //convert the NLP response to deep learning API request
         C4CUserActionVo deepLearnRequest = mlService.convertNLPToUserActionRequest(nlpResponse);
+        //get response from deep learning API
         C4CUserActionResponse response = deepLearningService.generateResultEntry(deepLearnRequest);
 
 

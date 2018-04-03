@@ -93,7 +93,7 @@ public class LeadDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 	 * @param request
 	 * @return
 	 */
-	List<ResourceUnionVo> generateCreateResult(C4CUserActionVo request){
+	private List<ResourceUnionVo> generateCreateResult(C4CUserActionVo request){
 		List<ResourceUnionVo> result = new ArrayList<ResourceUnionVo>();
 		// 1: Generate [Create] Action Chat & description
 		ResourceUnionVo homeCommandChatUnionVo = generateCreateCommandDescription(request);
