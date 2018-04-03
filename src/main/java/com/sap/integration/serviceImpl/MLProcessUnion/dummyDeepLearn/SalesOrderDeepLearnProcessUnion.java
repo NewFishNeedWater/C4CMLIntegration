@@ -1,4 +1,4 @@
-package com.sap.integration.serviceImpl.dummyDeepLearn;
+package com.sap.integration.serviceImpl.MLProcessUnion.dummyDeepLearn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +14,8 @@ import com.sap.integration.vo.requestVo.C4CUserActionVo;
 import com.sap.integration.vo.responseVo.ResourceUnion;
 import com.sap.integration.vo.responseVo.ResourceUnionVo;
 
-/**
- * Process Union For ThingType "Visit"
- * @author I043125
- *
- */
 @Service
-public class VisitDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
+public class SalesOrderDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 	
 	@Autowired
 	DumDeepLearnProcessUtility dumDeepLearnProcessUtility;
@@ -33,7 +28,7 @@ public class VisitDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 		resourceUnion.setType(ResourceUnionConstants.TYPE_CHAT);
 		// default index: 1, could be adjust later.
 		resourceUnion.setDisplayIndex(1);
-		String content = "Click this button to create a new visit";
+		String content = "Click this button to create a new Sales Order";
 		String customerName = dumDeepLearnProcessUtility.getCustomerNameFromRequest(request);
 		if(customerName != null){
 			content = content + " for customer:" + customerName;
@@ -50,7 +45,7 @@ public class VisitDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 	 * @param request
 	 * @return
 	 */
-	private ResourceUnionVo generateCreateLeadCommandDescription(
+	public ResourceUnionVo generateCreateLeadCommandDescription(
 			C4CUserActionVo request) {
 		ResourceUnionVo resourceUnionVo = new ResourceUnionVo();
 		ResourceUnion resourceUnion = new ResourceUnion();
@@ -74,7 +69,7 @@ public class VisitDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 	 * @param request
 	 * @return
 	 */
-	private ResourceUnionVo generateCreateOpportunityCommandDescription(
+	public ResourceUnionVo generateCreateOpportunityCommandDescription(
 			C4CUserActionVo request) {
 		ResourceUnionVo resourceUnionVo = new ResourceUnionVo();
 		ResourceUnion resourceUnion = new ResourceUnion();
@@ -98,7 +93,7 @@ public class VisitDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 	 * @param request
 	 * @return
 	 */
-	private List<ResourceUnionVo> generateCreateResult(C4CUserActionVo request){
+	List<ResourceUnionVo> generateCreateResult(C4CUserActionVo request){
 		List<ResourceUnionVo> result = new ArrayList<ResourceUnionVo>();
 		// 1: Generate [Create] Action Chat & description
 		ResourceUnionVo homeCommandChatUnionVo = generateCreateCommandDescription(request);
@@ -116,18 +111,18 @@ public class VisitDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 			ResourceUnionVo leadUnionVo = dumDeepLearnProcessUtility.copyToCommandResourceUnionDirectly(request);
 			leadUnionVo.getResourceUnion().setAction(SapActionsConstants.CREATE);
 			leadUnionVo.getResourceUnion().setTarget(SapThingTypeConstants.LEAD);
-			leadUnionVo.getResourceUnion().setDisplayIndex(4);
-			result.add(leadUnionVo);
+			homeCommandUnionVo.getResourceUnion().setDisplayIndex(4);
+			result.add(homeCommandUnionVo);
 		}
 		if(rand < 0.33){
 			// In case create a opportunity
-			ResourceUnionVo oppCommandChatUnionVo = generateCreateOpportunityCommandDescription(request);
-			result.add(oppCommandChatUnionVo);
-			ResourceUnionVo oppUnionVo = dumDeepLearnProcessUtility.copyToCommandResourceUnionDirectly(request);
-			oppUnionVo.getResourceUnion().setAction(SapActionsConstants.CREATE);
-			oppUnionVo.getResourceUnion().setTarget(SapThingTypeConstants.OPPORTUNITY);
-			oppUnionVo.getResourceUnion().setDisplayIndex(4);
-			result.add(oppUnionVo);
+			ResourceUnionVo leadCommandChatUnionVo = generateCreateOpportunityCommandDescription(request);
+			result.add(leadCommandChatUnionVo);
+			ResourceUnionVo leadUnionVo = dumDeepLearnProcessUtility.copyToCommandResourceUnionDirectly(request);
+			leadUnionVo.getResourceUnion().setAction(SapActionsConstants.CREATE);
+			leadUnionVo.getResourceUnion().setTarget(SapThingTypeConstants.OPPORTUNITY);
+			homeCommandUnionVo.getResourceUnion().setDisplayIndex(4);
+			result.add(homeCommandUnionVo);
 		}
 		
 		
@@ -139,10 +134,11 @@ public class VisitDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 
 		String action = dumDeepLearnProcessUtility.getRequestAction(request);
 		if(action!= null && action.equals(SapActionsConstants.CREATE)){
-			// In case: Create Visit
+			// In case: Create Sales Order
 			return generateCreateResult(request);
 		}
 		return null;
 	}
+
 
 }

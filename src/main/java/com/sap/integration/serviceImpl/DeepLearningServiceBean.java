@@ -1,7 +1,7 @@
 package com.sap.integration.serviceImpl;
 
 import com.sap.integration.service.DeepLearningService;
-import com.sap.integration.serviceImpl.dummyDeepLearn.DummyDeepLearnProcessFactory;
+import com.sap.integration.serviceImpl.MLProcessUnion.dummyDeepLearn.DummyDeepLearnProcessFactory;
 import com.sap.integration.vo.requestVo.C4CUserActionVo;
 import com.sap.integration.vo.responseVo.C4CUserActionResponse;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
 package com.sap.integration.serviceImpl;
 
+import com.sap.integration.constants.Constants;
 import com.sap.integration.constants.SapActionsConstants;
 import com.sap.integration.constants.SapParameterConstants;
 import com.sap.integration.constants.SapThingTypeConstants;
@@ -29,10 +30,10 @@ public class NaturalLanProcessServiceBean implements NaturalLanProcessService {
         JSONObject jsonRequest = JSONObject.fromObject(request);
 
         // Call Recast.ai NLP process
-        String sUrl = "https://api.recast.ai/build/v1/dialog";
+        String sUrl = Constants.NL_API_URL;
 
         Map<String, String> headerMap = new HashMap<String, String>();
-        headerMap.put("Authorization", "Token cc808a4996ec489278238113fa40d973");
+        headerMap.put("Authorization", Constants.NL_API_AUTHORIZATION);
 
         JSONObject jsonResult = HttpRequestUtils.httpPost(sUrl, jsonRequest, headerMap, "getNLPProcessResult");
 

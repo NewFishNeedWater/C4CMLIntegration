@@ -1,4 +1,4 @@
-package com.sap.integration.serviceImpl.dummyDeepLearn;
+package com.sap.integration.serviceImpl.MLProcessUnion.dummyDeepLearn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import com.sap.integration.vo.responseVo.ResourceUnion;
 import com.sap.integration.vo.responseVo.ResourceUnionVo;
 
 @Service
-public class SalesOrderDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
+public class RouteDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 	
 	@Autowired
 	DumDeepLearnProcessUtility dumDeepLearnProcessUtility;
@@ -28,13 +28,8 @@ public class SalesOrderDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 		resourceUnion.setType(ResourceUnionConstants.TYPE_CHAT);
 		// default index: 1, could be adjust later.
 		resourceUnion.setDisplayIndex(1);
-		String content = "Click this button to create a new Sales Order";
-		String customerName = dumDeepLearnProcessUtility.getCustomerNameFromRequest(request);
-		if(customerName != null){
-			content = content + " for customer:" + customerName;
-		}else{
-			content = content + ":";
-		}
+		String content = "Click this button to create a new Route Plan";
+		
 		resourceUnion.setContent(content);
 		resourceUnionVo.setResourceUnion(resourceUnion);
 		return resourceUnionVo;
@@ -134,11 +129,10 @@ public class SalesOrderDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 
 		String action = dumDeepLearnProcessUtility.getRequestAction(request);
 		if(action!= null && action.equals(SapActionsConstants.CREATE)){
-			// In case: Create Sales Order
+			// In case: Create Route
 			return generateCreateResult(request);
 		}
 		return null;
 	}
-
 
 }

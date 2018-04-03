@@ -1,4 +1,4 @@
-package com.sap.integration.serviceImpl.dummyDeepLearn;
+package com.sap.integration.serviceImpl.MLProcessUnion.dummyDeepLearn;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
