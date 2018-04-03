@@ -144,7 +144,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <warSourceExcludes>src/main/resources/**</warSourceExcludes>
-                    <warName>DingTalk</warName>
+                    <warName>C4CMLIntegration</warName>
                 </configuration>
             </plugin>
         </plugins>
