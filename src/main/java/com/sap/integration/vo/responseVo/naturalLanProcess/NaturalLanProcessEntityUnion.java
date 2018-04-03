@@ -1,48 +1,67 @@
 package com.sap.integration.vo.responseVo.naturalLanProcess;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class NaturalLanProcessEntityUnion {
-	
-	 private ArrayList<NaturalLanProcessEntity> command = new ArrayList<>();
-	 
-	 private ArrayList<NaturalLanProcessEntity> number = new ArrayList<>();
-	 
-	 private ArrayList<NaturalLanProcessEntity> ordertype = new ArrayList<>();
-	 
-	 private ArrayList<NaturalLanProcessEntity> customer = new ArrayList<>();
 
-	public ArrayList<NaturalLanProcessEntity> getCommand() {
-		return command;
-	}
+    private List<NaturalLanProcessEntity> command = new ArrayList<>();
 
-	public void setCommand(ArrayList<NaturalLanProcessEntity> command) {
-		this.command = command;
-	}
+    private List<NaturalLanProcessEntity> number = new ArrayList<>();
 
-	public ArrayList<NaturalLanProcessEntity> getNumber() {
-		return number;
-	}
+    private List<NaturalLanProcessEntity> person = new ArrayList<>();
 
-	public void setNumber(ArrayList<NaturalLanProcessEntity> number) {
-		this.number = number;
-	}
+    private List<NaturalLanProcessEntity> ordertype = new ArrayList<>();
 
-	public ArrayList<NaturalLanProcessEntity> getOrdertype() {
-		return ordertype;
-	}
+    private List<NaturalLanProcessEntity> customer = new ArrayList<>();
+    private List<NaturalLanProcessEntity> customerprefix = new ArrayList<>();
 
-	public void setOrdertype(ArrayList<NaturalLanProcessEntity> ordertype) {
-		this.ordertype = ordertype;
-	}
+    public List<NaturalLanProcessEntity> getCustomerprefix() {
+        return customerprefix;
+    }
 
-	public ArrayList<NaturalLanProcessEntity> getCustomer() {
-		return customer;
-	}
+    public void setCustomerprefix(List<NaturalLanProcessEntity> customerprefix) {
+        this.customerprefix = customerprefix;
+    }
 
-	public void setCustomer(ArrayList<NaturalLanProcessEntity> customer) {
-		this.customer = customer;
-	}
+    public List<NaturalLanProcessEntity> getPerson() {
+        return person;
+    }
 
+    public void setPerson(List<NaturalLanProcessEntity> person) {
+        this.person = person;
+    }
+
+    public List<NaturalLanProcessEntity> getCommand() {
+        return command;
+    }
+
+    public void setCommand(List<NaturalLanProcessEntity> command) {
+        this.command = command;
+    }
+
+    public List<NaturalLanProcessEntity> getNumber() {
+        return number;
+    }
+
+    public void setNumber(List<NaturalLanProcessEntity> number) {
+        this.number = number;
+    }
+
+    public List<NaturalLanProcessEntity> getOrdertype() {
+        return ordertype;
+    }
+
+    public void setOrdertype(List<NaturalLanProcessEntity> ordertype) {
+        this.ordertype = ordertype;
+    }
+
+    public List<NaturalLanProcessEntity> getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(List<NaturalLanProcessEntity> customer) {
+        this.customer = customer;
+    }
 }

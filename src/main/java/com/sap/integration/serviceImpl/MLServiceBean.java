@@ -3,13 +3,13 @@ package com.sap.integration.serviceImpl;
 import com.sap.integration.constants.Constants;
 import com.sap.integration.model.CommandPara;
 import com.sap.integration.service.MLService;
+import com.sap.integration.service.NaturalLanProcessService;
 import com.sap.integration.vo.requestVo.C4CUserActionVo;
 import com.sap.integration.vo.requestVo.Command;
 import com.sap.integration.vo.responseVo.C4CUserActionResponse;
 import com.sap.integration.vo.responseVo.ResourceContent;
 import com.sap.integration.vo.responseVo.ResourceUnion;
 import com.sap.integration.vo.responseVo.ResourceUnionVo;
-import com.sap.integration.vo.responseVo.naturalLanProcess.NaturalLanProcessEntityUnion;
 import com.sap.integration.vo.responseVo.naturalLanProcess.NaturalLanProcessResponse;
 
 import net.sf.json.JSONArray;
@@ -28,15 +28,9 @@ import java.util.Map;
 public class MLServiceBean implements MLService {
 
 	private static Logger logger = LoggerFactory.getLogger(MLServiceBean.class);
-	
+
 	@Autowired
-	private NaturalLanProcessCommandServiceBean naturalLanProcessCommandServiceBean;
-	
-	@Autowired
-	private NaturalLanProcessTargetServiceBean naturalLanProcessTargetServiceBean;
-	
-	@Autowired
-	private NaturalLanProcessOperationParaServiceBean naturalLanProcessOperationParaServiceBean;
+	private NaturalLanProcessService naturalLanProcessService;
 
 	public C4CUserActionResponse getDemoResponse() {
 
@@ -73,11 +67,11 @@ public class MLServiceBean implements MLService {
 			NaturalLanProcessResponse naturalLanProcessResponse) {
 		C4CUserActionVo result = new C4CUserActionVo();
 		Command command = new Command();
-		String target = naturalLanProcessTargetServiceBean.parseTargetFromNLPResponse(naturalLanProcessResponse);
-		String action = naturalLanProcessCommandServiceBean.parseCommandFromNLPResponse(naturalLanProcessResponse);
+		String target = naturalLanProcessService.parseTargetFromNLPResponse(naturalLanProcessResponse);
+		String action = naturalLanProcessService.parseCommandFromNLPResponse(naturalLanProcessResponse);
 		command.setAction(action);
 		command.setTarget(target);
-		List<CommandPara> commandParaList = naturalLanProcessOperationParaServiceBean.parseCommandFromNLPResponse(naturalLanProcessResponse);
+		List<CommandPara> commandParaList = naturalLanProcessService.parseOperationParaFromNLPResponse(naturalLanProcessResponse);
 		command.setCommandParaList(commandParaList);
 		result.setCommand(command);
 		return result;

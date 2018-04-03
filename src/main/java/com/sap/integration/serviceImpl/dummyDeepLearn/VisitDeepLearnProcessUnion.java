@@ -3,6 +3,7 @@ package com.sap.integration.serviceImpl.dummyDeepLearn;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sap.integration.utils.DumDeepLearnProcessUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ import com.sap.integration.vo.responseVo.ResourceUnionVo;
 public class VisitDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 	
 	@Autowired
-	private DumDeepLearnProcessUtility dumDeepLearnProcessUtility;
+	DumDeepLearnProcessUtility dumDeepLearnProcessUtility;
 	
 	@Override
 	public ResourceUnionVo generateCreateCommandDescription(

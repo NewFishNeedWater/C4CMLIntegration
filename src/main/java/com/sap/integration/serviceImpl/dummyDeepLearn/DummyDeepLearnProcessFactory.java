@@ -16,23 +16,22 @@ import com.sap.integration.vo.responseVo.C4CUserActionResponse;
 public class DummyDeepLearnProcessFactory {
 	
 	@Autowired
-	private AccountDeepLearnProcessUnion accountDeepLearnProcessUnion;
+	AccountDeepLearnProcessUnion accountDeepLearnProcessUnion;
 	
 	@Autowired
-	private LeadDeepLearnProcessUnion leadDeepLearnProcessUnion;
+	LeadDeepLearnProcessUnion leadDeepLearnProcessUnion;
 	
 	@Autowired
-	private OpportunityDeepLearnProcessUnion opportunityDeepLearnProcessUnion;
+	OpportunityDeepLearnProcessUnion opportunityDeepLearnProcessUnion;
 	
 	@Autowired
-	private RouteDeepLearnProcessUnion routeDeepLearnProcessUnion;
+	RouteDeepLearnProcessUnion routeDeepLearnProcessUnion;
 	
 	@Autowired
-	private SalesOrderDeepLearnProcessUnion salesOrderDeepLearnProcessUnion;
-	
+	SalesOrderDeepLearnProcessUnion salesOrderDeepLearnProcessUnion;
 
 	@Autowired
-	private VisitDeepLearnProcessUnion visitDeepLearnProcessUnion;
+	VisitDeepLearnProcessUnion visitDeepLearnProcessUnion;
 	
 	/**
 	 * Main Entry to generate Dummy Deep Learn Response
@@ -52,7 +51,7 @@ public class DummyDeepLearnProcessFactory {
 	 * @param request
 	 * @return
 	 */
-	public DumDeepLearnProcessUnion getProcessUnion(C4CUserActionVo request){
+	private DumDeepLearnProcessUnion getProcessUnion(C4CUserActionVo request){
 		if(request.getCommand().getTarget().equals(SapThingTypeConstants.ACCOUNT)){
 			return accountDeepLearnProcessUnion;
 		}
