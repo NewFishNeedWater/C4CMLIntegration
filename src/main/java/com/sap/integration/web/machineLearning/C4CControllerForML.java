@@ -7,10 +7,15 @@ import com.sap.integration.utils.HttpRequestUtils;
 import com.sap.integration.vo.requestVo.C4CUserActionVo;
 import com.sap.integration.vo.requestVo.naturalLanProcess.NaturalLanProcessRequest;
 import com.sap.integration.vo.responseVo.C4CUserActionResponse;
+import com.sap.integration.vo.responseVo.naturalLanProcess.NaturalLanProcessConversation;
 import com.sap.integration.vo.responseVo.naturalLanProcess.NaturalLanProcessEntity;
+import com.sap.integration.vo.responseVo.naturalLanProcess.NaturalLanProcessEntityUnion;
 import com.sap.integration.vo.responseVo.naturalLanProcess.NaturalLanProcessIntent;
+import com.sap.integration.vo.responseVo.naturalLanProcess.NaturalLanProcessMemory;
 import com.sap.integration.vo.responseVo.naturalLanProcess.NaturalLanProcessMessage;
 import com.sap.integration.vo.responseVo.naturalLanProcess.NaturalLanProcessResponse;
+import com.sap.integration.vo.responseVo.naturalLanProcess.NaturalLanProcessResult;
+import com.sap.integration.vo.responseVo.naturalLanProcess.NaturalLanProcessnlp;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -145,6 +150,12 @@ public class C4CControllerForML {
 				NaturalLanProcessEntity.class);
 		classMap.put("customer",
 				NaturalLanProcessEntity.class);		
+		classMap.put("results",NaturalLanProcessResult.class);
+		classMap.put("conversation",NaturalLanProcessConversation.class);
+		classMap.put("nlp",NaturalLanProcessnlp.class);
+		classMap.put("entities",NaturalLanProcessEntityUnion.class);
+		classMap.put("memory", NaturalLanProcessMemory.class);
+		
 	
 		naturalLanProcessResponse = (NaturalLanProcessResponse) JSONObject
 				.toBean(jsonResult, NaturalLanProcessResponse.class,

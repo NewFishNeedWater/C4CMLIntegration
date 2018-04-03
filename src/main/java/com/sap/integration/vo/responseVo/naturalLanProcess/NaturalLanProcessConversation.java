@@ -6,7 +6,7 @@ public class NaturalLanProcessConversation {
 	
 	protected String lanuage;
 
-	protected Object memory;
+	protected NaturalLanProcessMemory memory;
 	
 	protected String skill;
 	
@@ -28,11 +28,11 @@ public class NaturalLanProcessConversation {
 		this.lanuage = lanuage;
 	}
 
-	public Object getMemory() {
+	public NaturalLanProcessMemory getMemory() {
 		return memory;
 	}
 
-	public void setMemory(Object memory) {
+	public void setMemory(NaturalLanProcessMemory memory) {
 		this.memory = memory;
 	}
 
