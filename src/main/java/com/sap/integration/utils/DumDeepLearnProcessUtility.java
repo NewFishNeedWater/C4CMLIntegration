@@ -1,7 +1,13 @@
 package com.sap.integration.utils;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.sap.integration.model.Product;
+import com.sap.integration.vo.responseVo.ResourceContent;
 import org.springframework.stereotype.Service;
 
 import com.sap.integration.constants.ResourceUnionConstants;
@@ -65,6 +71,44 @@ public class DumDeepLearnProcessUtility {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * @param newListSize
+	 * @return
+	 */
+	public List<Product> getRandomProduct(Integer newListSize){
+		Map map = new HashMap();
+		List listNew = new ArrayList();
+		List original  = ResourceUnionConstants.DUMMY_PRODUCT_LIST;
+		if (original.size() <= newListSize) {
+			return original;
+		} else {
+			while (map.size() < newListSize) {
+				int random = (int) (Math.random() * original.size());
+				if (!map.containsKey(random)) {
+					map.put(random, "");
+					System.out.println(random + "===========" + original.get(random));
+					listNew.add(original.get(random));
+				}
+			}
+			return listNew;
+		}
+	}
+
+	/**
+	 *
+	 * @param hitRate
+	 * @param type
+	 * @param value
+	 * @return
+	 */
+	public ResourceContent createResourceContent(BigDecimal hitRate, String type, String value){
+		ResourceContent content = new ResourceContent();
+		content.setHitRate(hitRate);
+		content.setType(type);
+		content.setValue(value);
+		return content;
 	}
 
 }

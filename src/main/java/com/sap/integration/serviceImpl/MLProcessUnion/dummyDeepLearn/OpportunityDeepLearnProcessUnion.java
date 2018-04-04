@@ -1,9 +1,12 @@
 package com.sap.integration.serviceImpl.MLProcessUnion.dummyDeepLearn;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sap.integration.model.Product;
 import com.sap.integration.utils.DumDeepLearnProcessUtility;
+import com.sap.integration.vo.responseVo.ResourceContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -124,7 +127,37 @@ public class OpportunityDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 			homeCommandUnionVo.getResourceUnion().setDisplayIndex(4);
 			result.add(homeCommandUnionVo);
 		}
-		
+		ResourceUnionVo infoUnion = new ResourceUnionVo();
+
+		ResourceUnion resourceUnion = new ResourceUnion();
+		infoUnion.setResourceUnion(resourceUnion);
+		resourceUnion.setType(ResourceUnionConstants.TYPE_TEXTINFO);
+		resourceUnion.setDisplayIndex(5);
+		List<ResourceContent> resourceContentList = new ArrayList<>();
+		resourceUnion.setResourceContents(resourceContentList);
+		ResourceContent content = dumDeepLearnProcessUtility.createResourceContent(new BigDecimal(0.53),"text","Sales Order Successful rate since 2018:" + Math.random()*100 + "%");
+		resourceContentList.add(content);
+
+		String customerName = dumDeepLearnProcessUtility.getCustomerNameFromRequest(request);
+		if(null!=customerName){
+			ResourceContent content1 = dumDeepLearnProcessUtility.createResourceContent(new BigDecimal(0.91),"title",customerName);
+			resourceContentList.add(content1);
+		}
+
+		ResourceContent content2 = dumDeepLearnProcessUtility.createResourceContent(new BigDecimal(0.53),"text","Mostly visited products");
+		resourceContentList.add(content2);
+		Product product2 = dumDeepLearnProcessUtility.getRandomProduct(1).get(0);
+		ResourceContent content3 = dumDeepLearnProcessUtility.createResourceContent(new BigDecimal(0.65),"text","Material:"+product2.getMaterial() + "Number of quoted:"+product2.getNumOfQuoted());
+		resourceContentList.add(content3);
+
+		Product product = dumDeepLearnProcessUtility.getRandomProduct(1).get(0);
+		ResourceContent content4 = dumDeepLearnProcessUtility.createResourceContent(new BigDecimal(0.65),"text","Material:"+product.getMaterial() + "Number of quoted:"+product.getNumOfQuoted());
+		resourceContentList.add(content4);
+
+		Product product1 = dumDeepLearnProcessUtility.getRandomProduct(1).get(0);
+		ResourceContent content5 = dumDeepLearnProcessUtility.createResourceContent(new BigDecimal(0.65),"text","Material:"+product1.getMaterial() + "Number of quoted:"+product1.getNumOfQuoted());
+		resourceContentList.add(content5);
+		result.add(infoUnion);
 		
 		return result;
 	}
