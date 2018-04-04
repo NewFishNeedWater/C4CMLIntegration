@@ -135,7 +135,7 @@ public class OpportunityDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 		resourceUnion.setDisplayIndex(5);
 		List<ResourceContent> resourceContentList = new ArrayList<>();
 		resourceUnion.setResourceContents(resourceContentList);
-		ResourceContent content = dumDeepLearnProcessUtility.createResourceContent(new BigDecimal(0.53),"text","Sales Order Successful rate since 2018:" + (int)Math.random()*100 + "%");
+		ResourceContent content = dumDeepLearnProcessUtility.createResourceContent(new BigDecimal(0.53),"text","Sales Order Successful rate since 2018:" + (int)(Math.random()*100) + "%");
 		resourceContentList.add(content);
 
 		String customerName = dumDeepLearnProcessUtility.getCustomerNameFromRequest(request);
