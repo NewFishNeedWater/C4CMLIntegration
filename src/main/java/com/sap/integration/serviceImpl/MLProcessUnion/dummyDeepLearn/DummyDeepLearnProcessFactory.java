@@ -67,8 +67,8 @@ public class DummyDeepLearnProcessFactory {
 		if(request.getCommand().getTarget().equals(SapThingTypeConstants.LEAD)){
 			return leadDeepLearnProcessUnion;
 		}
-		if(request.getCommand().getTarget().equals(SapThingTypeConstants.MATERIAL)){
-			return leadDeepLearnProcessUnion;
+		if(request.getCommand().getTarget().equals(SapThingTypeConstants.OPPORTUNITY)){
+			return opportunityDeepLearnProcessUnion;
 		}
 		
 		if(request.getCommand().getTarget().equals(SapThingTypeConstants.SALES_ORDER)){
