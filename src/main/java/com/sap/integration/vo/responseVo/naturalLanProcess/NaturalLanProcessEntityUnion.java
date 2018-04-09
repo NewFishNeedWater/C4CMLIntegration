@@ -5,6 +5,8 @@ import java.util.List;
 
 
 public class NaturalLanProcessEntityUnion {
+	
+	private List<NaturalLanProcessEntity> pronoun = new ArrayList<>();
 
     private List<NaturalLanProcessEntity> command = new ArrayList<>();
 
@@ -15,9 +17,18 @@ public class NaturalLanProcessEntityUnion {
     private List<NaturalLanProcessEntity> ordertype = new ArrayList<>();
 
     private List<NaturalLanProcessEntity> customer = new ArrayList<>();
+    
     private List<NaturalLanProcessEntity> customerprefix = new ArrayList<>();
 
-    public List<NaturalLanProcessEntity> getCustomerprefix() {
+    public List<NaturalLanProcessEntity> getPronoun() {
+		return pronoun;
+	}
+
+	public void setPronoun(List<NaturalLanProcessEntity> pronoun) {
+		this.pronoun = pronoun;
+	}
+
+	public List<NaturalLanProcessEntity> getCustomerprefix() {
         return customerprefix;
     }
 
