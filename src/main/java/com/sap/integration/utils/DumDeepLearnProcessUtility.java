@@ -8,12 +8,14 @@ import java.util.Map;
 
 import com.sap.integration.model.Customer;
 import com.sap.integration.model.Product;
+import com.sap.integration.model.VisitTimeModel;
 import com.sap.integration.vo.responseVo.ResourceContent;
 
 import org.springframework.stereotype.Service;
 
 import com.sap.integration.constants.ResourceUnionConstants;
 import com.sap.integration.constants.SapParameterConstants;
+import com.sap.integration.constants.VisitStartEndTimeModel;
 import com.sap.integration.model.CommandPara;
 import com.sap.integration.vo.requestVo.C4CUserActionVo;
 import com.sap.integration.vo.responseVo.ResourceUnion;
@@ -116,6 +118,28 @@ public class DumDeepLearnProcessUtility {
 			}
 			return listNew;
 		}
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public VisitTimeModel getRandomVisitTimeModel() {		
+		int random = (int) (Math.random() * VisitStartEndTimeModel.DUMMY_VISITTIME_LIST.size());
+		return VisitStartEndTimeModel.DUMMY_VISITTIME_LIST.get(random);
+	}
+	
+	public VisitTimeModel getPreVisitTimeModelByUser(String customerName){
+		if("Boris".equalsIgnoreCase(customerName)){
+			return new VisitTimeModel("5:00PM","6:00PM");
+		}
+		if("Aviva".equalsIgnoreCase(customerName)){
+			return new VisitTimeModel("3:30PM","5:00PM");
+		}
+		if("Xiaoming".equalsIgnoreCase(customerName)){
+			return new VisitTimeModel("2:00PM","3:00PM");
+		}
+		return null;
 	}
 	
 	public List<Customer> getRandomCustomer(Integer newListSize) {

@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.sap.integration.model.CommandPara;
 import com.sap.integration.model.ComparatorCustomer;
 import com.sap.integration.model.Customer;
 import com.sap.integration.model.Product;
+import com.sap.integration.model.VisitTimeModel;
 import com.sap.integration.utils.DumDeepLearnProcessUtility;
 import com.sap.integration.vo.responseVo.ResourceContent;
 
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.sap.integration.constants.ResourceUnionConstants;
 import com.sap.integration.constants.SapActionsConstants;
+import com.sap.integration.constants.SapParameterConstants;
 import com.sap.integration.constants.SapThingTypeConstants;
 import com.sap.integration.vo.requestVo.C4CUserActionVo;
 import com.sap.integration.vo.responseVo.ResourceUnion;
@@ -48,6 +51,28 @@ public class VisitDeepLearnProcessUnion extends DumDeepLearnProcessUnion {
 		} else {
 			content = content + ":";
 		}
+		resourceUnion.setContent(content);
+		resourceUnion.setHitRate(dumDeepLearnProcessUtility
+				.generateRandomHitRate(80));
+		resourceUnionVo.setResourceUnion(resourceUnion);
+		return resourceUnionVo;
+	}
+	
+	public ResourceUnionVo generateVisitTimeRecommendDescription(
+			C4CUserActionVo request, VisitTimeModel visitTimeModel) {
+		String customerName = dumDeepLearnProcessUtility
+				.getCustomerNameFromRequest(request);
+		if(customerName == null){
+			return null;
+		}
+		ResourceUnionVo resourceUnionVo = new ResourceUnionVo();
+		ResourceUnion resourceUnion = new ResourceUnion();
+		resourceUnion.setType(ResourceUnionConstants.TYPE_CHAT);
+		// default index: 1, could be adjust later.
+		resourceUnion.setDisplayIndex(1);
+		String content = "Usually visit time for this customer is:";
+		
+		content = content + visitTimeModel.getStartTime() + " - " + visitTimeModel.getEndTime();
 		resourceUnion.setContent(content);
 		resourceUnion.setHitRate(dumDeepLearnProcessUtility
 				.generateRandomHitRate(80));
@@ -218,6 +243,20 @@ public class VisitDeepLearnProcessUnion extends DumDeepLearnProcessUnion {
 		result.add(texInfoUnion);
 		return result;
 	}
+	
+	private void _addStartTimeEndTimeToCommandPara(ResourceUnionVo resourceUnionVo, VisitTimeModel visitTimeModel){
+		
+		List<CommandPara> commandParas = resourceUnionVo.getResourceUnion().getCommandParas();
+		CommandPara startTimePara = new CommandPara();
+		startTimePara.setParaValue(SapParameterConstants.STARTTIME);
+		startTimePara.setParaName(visitTimeModel.getStartTime());
+		commandParas.add(startTimePara);
+		CommandPara endTimePara = new CommandPara();
+		endTimePara.setParaValue(SapParameterConstants.ENDTIME);
+		endTimePara.setParaName(visitTimeModel.getEndTime());
+		commandParas.add(endTimePara);
+		resourceUnionVo.getResourceUnion().setCommandParas(commandParas);
+	}
 
 	/**
 	 * Create Visit with specified customer
@@ -230,12 +269,23 @@ public class VisitDeepLearnProcessUnion extends DumDeepLearnProcessUnion {
 		// 1: Generate [Create] Action Chat & description
 		ResourceUnionVo homeCommandChatUnionVo = generateCreateCommandDescription(request);
 		result.add(homeCommandChatUnionVo);
+		// 1.5: Generate the default visit time
+		String customerName = dumDeepLearnProcessUtility
+				.getCustomerNameFromRequest(request);
+		VisitTimeModel visitTimeModel = dumDeepLearnProcessUtility.getPreVisitTimeModelByUser(customerName);
+		if(visitTimeModel == null){
+			visitTimeModel = dumDeepLearnProcessUtility.getRandomVisitTimeModel();
+		}
+		
+		
 		// 2: Generate [Create] Action Button
-		ResourceUnionVo homeCommandUnionVo = dumDeepLearnProcessUtility
-				.copyToCommandResourceUnionDirectly(request);
+		ResourceUnionVo homeCommandUnionVo = dumDeepLearnProcessUtility.copyToCommandResourceUnionDirectly(request);
 		homeCommandUnionVo.getResourceUnion().setDisplayIndex(2);
 		homeCommandUnionVo.getResourceUnion().setHitRate(
 				dumDeepLearnProcessUtility.generateRandomHitRate(80));
+		ResourceUnionVo visitTimeUnionVo = generateVisitTimeRecommendDescription(request, visitTimeModel);
+		result.add(visitTimeUnionVo);
+		_addStartTimeEndTimeToCommandPara(homeCommandUnionVo, visitTimeModel);
 		result.add(homeCommandUnionVo);
 		int successRate = (int) (Math.random() * 100);
 		int displayIndex = 3;

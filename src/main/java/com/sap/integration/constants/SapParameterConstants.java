@@ -12,5 +12,9 @@ public class SapParameterConstants {
 	public final static String NAME ="name";
 	
 	public final static String DATETIME = "dateTime";
+	
+	public final static String STARTTIME = "startTime";
+	
+	public final static String ENDTIME = "endTime";
 
 }
