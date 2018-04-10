@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.sap.integration.model.ComparatorCustomer;
 import com.sap.integration.model.Customer;
 import com.sap.integration.model.Product;
 import com.sap.integration.utils.DumDeepLearnProcessUtility;
+import com.sap.integration.utils.comparatpr.ComparatorCustomer;
 import com.sap.integration.vo.responseVo.ResourceContent;
 
 import org.springframework.beans.factory.annotation.Autowired;

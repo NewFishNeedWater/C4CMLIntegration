@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.sap.integration.constants.ResourceUnionConstants;
-import com.sap.integration.model.ComparatorCustomer;
+import com.sap.integration.utils.comparatpr.ComparatorCustomer;
 import com.sap.integration.model.Customer;
 
 public class TestSort {

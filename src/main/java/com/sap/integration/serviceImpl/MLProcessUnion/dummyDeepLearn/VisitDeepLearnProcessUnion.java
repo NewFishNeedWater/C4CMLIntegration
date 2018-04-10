@@ -5,11 +5,12 @@ import java.util.Collections;
 import java.util.List;
 
 import com.sap.integration.model.CommandPara;
-import com.sap.integration.model.ComparatorCustomer;
+
 import com.sap.integration.model.Customer;
 import com.sap.integration.model.Product;
 import com.sap.integration.model.VisitTimeModel;
 import com.sap.integration.utils.DumDeepLearnProcessUtility;
+import com.sap.integration.utils.comparatpr.ComparatorCustomer;
 import com.sap.integration.vo.responseVo.ResourceContent;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -181,7 +182,6 @@ public class VisitDeepLearnProcessUnion extends DumDeepLearnProcessUnion {
 	 * Generate default TextInfo Resource Union for [Visit]
 	 * 
 	 * @param request
-	 * @param successRate
 	 * @param displayIndex
 	 * @return
 	 */
@@ -201,7 +201,7 @@ public class VisitDeepLearnProcessUnion extends DumDeepLearnProcessUnion {
 						"text", "", "Here are some customers might be interested for your visit:");
 		resourceContentList.add(content1);
 		List<Customer> customerList = dumDeepLearnProcessUtility.getRandomCustomer(3);
-		Collections.sort(customerList, new ComparatorCustomer());		
+		Collections.sort(customerList, new ComparatorCustomer());
 		for(Customer customer:customerList){
 			ResourceContent content = dumDeepLearnProcessUtility
 					.createResourceContent(

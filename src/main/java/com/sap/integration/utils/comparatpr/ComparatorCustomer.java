@@ -1,4 +1,6 @@
-package com.sap.integration.model;
+package com.sap.integration.utils.comparatpr;
+
+import com.sap.integration.model.Customer;
 
 import java.util.Comparator;
 
