@@ -73,7 +73,7 @@ public class SalesOrderDeepLearnProcessUnion extends DumDeepLearnProcessUnion {
 		ResourceContent content1 = dumDeepLearnProcessUtility
 				.createResourceContent(
 						dumDeepLearnProcessUtility.generateRandomHitRate(40),
-						"text",
+						"text","",
 						"Here are some customers might be suitable for create a sales order:");
 		resourceContentList.add(content1);
 		List<Customer> customerList = dumDeepLearnProcessUtility
@@ -86,7 +86,7 @@ public class SalesOrderDeepLearnProcessUnion extends DumDeepLearnProcessUnion {
 									.generateRandomHitRate(50),
 							"text",
 							"Customer Name:" + customer.getName()
-									+ ", You have contacted:"
+									+ ", You have contacted",
 									+ customer.getNumOfQuoted() + " times");
 			resourceContentList.add(content);
 		}

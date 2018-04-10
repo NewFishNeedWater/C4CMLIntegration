@@ -74,7 +74,7 @@ public class LeadDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 		ResourceContent content1 = dumDeepLearnProcessUtility
 				.createResourceContent(
 						dumDeepLearnProcessUtility.generateRandomHitRate(40),
-						"text", "Here are some customers you have visited or contacted recently, might be useful for your lead creation:");
+						"text", "", "Here are some customers you have visited or contacted recently, might be useful for your lead creation:");
 		resourceContentList.add(content1);
 		List<Customer> customerList = dumDeepLearnProcessUtility.getRandomCustomer(3);
 		Collections.sort(customerList, new ComparatorCustomer());		
@@ -84,8 +84,8 @@ public class LeadDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 							dumDeepLearnProcessUtility.generateRandomHitRate(50),
 							"text",
 							"Customer Name:" + customer.getName()
-									+ ", You have visited or contacted:"
-									+ customer.getNumOfQuoted() + " times") ;
+									+ ", You have visited or contacted",
+									customer.getNumOfQuoted() + " times") ;
 			resourceContentList.add(content);
 		}
 		
@@ -264,21 +264,21 @@ public class LeadDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 		if (null != customerName) {
 			ResourceContent content = dumDeepLearnProcessUtility
 					.createResourceContent(dumDeepLearnProcessUtility
-							.generateRandomHitRate(80), "title", customerName);
+							.generateRandomHitRate(80), "title", "Customer", customerName);
 			resourceContentList.add(content);
 		}
 
 		ResourceContent content1 = dumDeepLearnProcessUtility
 				.createResourceContent(
 						dumDeepLearnProcessUtility.generateRandomHitRate(40),
-						"text", "Sales Order Successful rate since 2018:"
+						"text", "Sales Order Successful rate since 2018",
 								+ successRate + "%");
 		resourceContentList.add(content1);
 
 		ResourceContent content2 = dumDeepLearnProcessUtility
 				.createResourceContent(
 						dumDeepLearnProcessUtility.generateRandomHitRate(40),
-						"title", "Mostly visited products");
+						"title", "", "Mostly visited products");
 		resourceContentList.add(content2);
 		Product product2 = dumDeepLearnProcessUtility.getRandomProduct(1)
 				.get(0);
@@ -287,8 +287,8 @@ public class LeadDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 						dumDeepLearnProcessUtility.generateRandomHitRate(50),
 						"text",
 						"Material:" + product2.getMaterial()
-								+ ", Number of quoted:"
-								+ product2.getNumOfQuoted());
+								+ ", Number of quoted",
+								"" + product2.getNumOfQuoted());
 		resourceContentList.add(content3);
 
 		Product product = dumDeepLearnProcessUtility.getRandomProduct(1).get(0);
@@ -297,8 +297,8 @@ public class LeadDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 						dumDeepLearnProcessUtility.generateRandomHitRate(50),
 						"text",
 						"Material:" + product.getMaterial()
-								+ ", Number of quoted:"
-								+ product.getNumOfQuoted());
+								+ ", Number of quoted",
+								"" + product.getNumOfQuoted());
 		resourceContentList.add(content4);
 
 		Product product1 = dumDeepLearnProcessUtility.getRandomProduct(1)
@@ -308,8 +308,8 @@ public class LeadDeepLearnProcessUnion extends DumDeepLearnProcessUnion{
 						dumDeepLearnProcessUtility.generateRandomHitRate(50),
 						"text",
 						"Material:" + product1.getMaterial()
-								+ ", Number of quoted:"
-								+ product1.getNumOfQuoted());
+								+ ", Number of quoted",
+								"" + product1.getNumOfQuoted());
 		resourceContentList.add(content5);
 		return infoUnion;
 	}

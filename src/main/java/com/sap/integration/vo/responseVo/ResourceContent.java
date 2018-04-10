@@ -7,6 +7,7 @@ public class ResourceContent {
     private String type;
     private String value;
     private BigDecimal hitRate;
+    private String label;
 
     public String getType() {
         return type;
@@ -20,7 +21,15 @@ public class ResourceContent {
         return value;
     }
 
-    public void setValue(String value) {
+    public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public void setValue(String value) {
         this.value = value;
     }
 

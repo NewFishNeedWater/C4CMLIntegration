@@ -170,10 +170,11 @@ public class DumDeepLearnProcessUtility {
 	 * @return
 	 */
 	public ResourceContent createResourceContent(BigDecimal hitRate,
-			String type, String value) {
+			String type, String label, String value) {
 		ResourceContent content = new ResourceContent();
 		content.setHitRate(hitRate);
 		content.setType(type);
+		content.setLabel(label);
 		content.setValue(value);
 		return content;
 	}
