@@ -94,7 +94,7 @@ public class VisitDeepLearnProcessUnion extends DumDeepLearnProcessUnion {
 		resourceUnion.setType(ResourceUnionConstants.TYPE_CHAT);
 		// default index: 1, could be adjust later.
 		resourceUnion.setDisplayIndex(3);
-		String content = "IF neccessary, Click this button to create a new Lead ";
+		String content = "If neccessary, Click this button to create a new Lead ";
 		String customerName = dumDeepLearnProcessUtility
 				.getCustomerNameFromRequest(request);
 		if (customerName != null) {
